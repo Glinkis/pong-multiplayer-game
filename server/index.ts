@@ -8,9 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../dist/index.html"));
-});
+app.use(express.static(path.join(__dirname, "../dist")));
 
 io.on("connection", socket => {
   console.log(`User ${socket.id} connected!`);

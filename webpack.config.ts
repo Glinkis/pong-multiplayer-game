@@ -6,12 +6,29 @@ const config: Configuration = {
   devtool: "eval-source-map",
   stats: "minimal",
   resolve: {
-    extensions: [".js", ".ts"]
+    extensions: [".js", ".ts"],
+    alias: {
+      "socket.io-client": "socket.io-client/dist/socket.io.slim.js"
+    }
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
   },
   module: {
-    rules: [{ test: /\.ts$/, loader: "ts-loader" }]
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: "ts-loader"
+      }
+    ]
   },
-  plugins: [new HtmlWebpackPlugin({ title: project.name })]
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: project.name
+    })
+  ]
 };
 
 export default config;

@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 import { Events } from "../shared/events";
 
-io("localhost:3030")
+io(`${location.hostname}:3030`)
   .on("connect", () => {
     console.log("Connected to server!");
   })

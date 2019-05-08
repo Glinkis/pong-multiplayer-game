@@ -16,6 +16,7 @@
     "serve": "run-s build-client serve-client start-server"
   },
   "dependencies": {
+    "ansi-colors": "^3.2.4",
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.19.0",
     "npm-run-all": "^4.1.5",
@@ -30,6 +31,7 @@
     "webpack-dev-server": "^3.3.0"
   },
   "devDependencies": {
+    "@types/ansi-colors": "^3.2.0",
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/node": "^12.0.0",
     "@types/socket.io": "^2.1.2",

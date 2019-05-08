@@ -1,11 +1,12 @@
 import socketIo from "socket.io";
+import { clear, log } from "console";
 import { green, blue } from "ansi-colors";
 import { Events } from "../shared/events";
 
 const io = socketIo();
 
 io.on("connection", socket => {
-  console.log(blue(`User ${socket.id} connected!`));
+  log(blue(`User ${socket.id} connected!`));
 
   for (const [key, value] of Object.entries(io.sockets.sockets)) {
     if (socket.id !== key) {
@@ -14,12 +15,12 @@ io.on("connection", socket => {
   }
 
   socket.on("disconnect", () => {
-    console.log(blue(`User ${socket.id} disconnected!`));
+    log(blue(`User ${socket.id} disconnected!`));
     io.emit(Events.UserDisconnected, socket.id);
   });
 });
 
 io.listen(3030);
 
-console.clear();
-console.log(green("Server is listening on port 3030"));
+clear();
+log(green("Server is listening on port 3030"));

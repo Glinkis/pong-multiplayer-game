@@ -6,7 +6,7 @@ const config: Configuration = {
   devtool: "eval-source-map",
   stats: "minimal",
   resolve: {
-    extensions: [".js", ".ts"],
+    extensions: [".js", ".ts", ".tsx"],
     alias: {
       "socket.io-client": "socket.io-client/dist/socket.io.slim.js"
     }
@@ -19,7 +19,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loader: "ts-loader"
       }
     ]

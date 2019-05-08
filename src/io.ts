@@ -17,3 +17,5 @@ io(`${location.hostname}:3030`)
   .on(Events.UserDisconnected, (id: string) => {
     console.log(`User ${id} disconnected!`);
   });
+
+export default io;

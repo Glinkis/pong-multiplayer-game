@@ -1,7 +1,7 @@
-import React, { useReducer } from 'react'
+import React from 'react'
 import { css } from 'emotion'
-import { Dispatch } from './dispatch'
-import { State, defaultState, reducer } from './state'
+import { Dispatch } from '../dispatch'
+import { State, defaultState, reducer } from '../state'
 
 const wrapper = css({
   minWidth: '100vw',
@@ -15,7 +15,7 @@ const wrapper = css({
 })
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, defaultState)
+  const [state, dispatch] = React.useReducer(reducer, defaultState)
 
   return (
     <Dispatch.Provider value={dispatch}>

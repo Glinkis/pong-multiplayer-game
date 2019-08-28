@@ -6,3 +6,5 @@ node_modules/
 
 # Built files
 dist/
+
+codealike.json

@@ -1,34 +1,34 @@
-import { Configuration } from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import project from "./package.json";
+import { Configuration, Plugin } from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import project from './package.json'
 
 const config: Configuration = {
-  devtool: "eval-source-map",
-  stats: "minimal",
+  devtool: 'eval-source-map',
+  stats: 'minimal',
   resolve: {
-    extensions: [".js", ".ts", ".tsx"],
+    extensions: ['.js', '.ts', '.tsx'],
     alias: {
-      "socket.io-client": "socket.io-client/dist/socket.io.slim.js"
+      'socket.io-client': 'socket.io-client/dist/socket.io.slim.js'
     }
   },
   optimization: {
     splitChunks: {
-      chunks: "all"
+      chunks: 'all'
     }
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "ts-loader"
+        loader: 'ts-loader'
       }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    (new HtmlWebpackPlugin({
       title: project.name
-    })
+    }) as unknown) as Plugin
   ]
-};
+}
 
-export default config;
+export default config

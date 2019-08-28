@@ -1,26 +1,28 @@
-import socketIo from "socket.io";
-import { clear, log } from "console";
-import { green, blue } from "ansi-colors";
-import { Events } from "../shared/events";
+import socketIo from 'socket.io'
+import { clear, log } from 'console'
+import { green, blue } from 'ansi-colors'
+import { Events } from '../shared/events'
 
-const io = socketIo();
+const io = socketIo()
 
-io.on("connection", socket => {
-  log(blue(`User ${socket.id} connected!`));
+io.on('connection', socket => {
+  log(blue(`User ${socket.id} connected!`))
 
-  for (const [key, value] of Object.entries(io.sockets.sockets)) {
-    if (socket.id !== key) {
-      value.emit(Events.UserConnected, socket.id);
-    }
+  const sockets = Object.values(io.sockets.sockets)
+
+  socket.emit(Events.UserList, sockets.map(socket => socket.id))
+
+  for (const value of sockets) {
+    value.emit(Events.UserConnected, socket.id)
   }
 
-  socket.on("disconnect", () => {
-    log(blue(`User ${socket.id} disconnected!`));
-    io.emit(Events.UserDisconnected, socket.id);
-  });
-});
+  socket.on('disconnect', () => {
+    log(blue(`User ${socket.id} disconnected!`))
+    io.emit(Events.UserDisconnected, socket.id)
+  })
+})
 
-io.listen(3030);
+io.listen(3030)
 
-clear();
-log(green("Server is listening on port 3030"));
+clear()
+log(green('Server is listening on port 3030'))

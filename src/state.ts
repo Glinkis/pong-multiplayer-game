@@ -1,15 +1,38 @@
 import React from 'react'
+import { Events, EventMap } from '../shared/events'
 
 interface State {
-  users: Map<string, string>
+  users: Record<string, boolean>
 }
 
 export const defaultState = {
-  users: new Map()
+  users: {}
 }
 
-export function reducer(state: State, action: any) {
-  console.log(state, action)
+interface Action {
+  type: string
+  payload: any
+}
+
+export function reducer(state: State, action: Action) {
+  switch (action.type) {
+    case Events.UserConnected:
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          [action.payload]: true
+        }
+      }
+    case Events.UserDisconnected:
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          [action.payload]: false
+        }
+      }
+  }
   return state
 }
 

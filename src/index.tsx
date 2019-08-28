@@ -1,7 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import "./io";
-import App from "./app";
+import './io'
+import './global'
+import App from './app'
 
-ReactDOM.render(<App />, document.body);
+ReactDOM.render(<App />, document.body)

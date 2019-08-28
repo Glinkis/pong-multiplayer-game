@@ -14,3 +14,7 @@ export function reducer(state: State, action: any) {
 }
 
 export const State = React.createContext(defaultState)
+
+export function useState() {
+  return React.useContext(State)
+}

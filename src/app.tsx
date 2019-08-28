@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { css } from 'emotion'
-import { Provider, state } from './context'
+import { Dispatch } from './dispatch'
+import { State, defaultState, reducer } from './state'
 
 const wrapper = css({
   minWidth: '100vw',
@@ -14,9 +15,13 @@ const wrapper = css({
 })
 
 export default function App() {
+  const [state, dispatch] = useReducer(reducer, defaultState)
+
   return (
-    <Provider value={state}>
-      <div className={wrapper}>Hello World</div>
-    </Provider>
+    <Dispatch.Provider value={dispatch}>
+      <State.Provider value={state}>
+        <div className={wrapper}>Hello World</div>
+      </State.Provider>
+    </Dispatch.Provider>
   )
 }

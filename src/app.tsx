@@ -2,24 +2,21 @@ import React from 'react'
 import { css } from 'emotion'
 import { Provider, state } from './context'
 
-const App = () => (
-  <Provider value={state}>
-    <div
-      className={css({
-        position: 'absolute',
-        minWidth: '100vw',
-        minHeight: '100vh',
+const wrapper = css({
+  minWidth: '100vw',
+  minHeight: '100vh',
 
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 
-        fontSize: '64pt'
-      })}
-    >
-      <div>Hello World</div>
-    </div>
-  </Provider>
-)
+  fontSize: '64pt'
+})
 
-export default App
+export default function App() {
+  return (
+    <Provider value={state}>
+      <div className={wrapper}>Hello World</div>
+    </Provider>
+  )
+}
